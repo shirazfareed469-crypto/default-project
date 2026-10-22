@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sohail &amp; Shiraz — Digital Marketing Studio</title>
+  <meta name="description" content="Sohail &amp; Shiraz is a digital marketing studio helping ambitious brands grow through SEO, paid advertising, social media and conversion-focused design." />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&amp;family=Inter:wght@400;500;600;700&amp;family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&amp;family=Space+Grotesk:wght@500;700&amp;display=swap" rel="stylesheet" />
+  <script>
+    /* Apply the saved theme before first paint so there is no colour flash. */
+    (function () {
+      var themes = ["blush", "reddish", "yellow", "wine"];
+      var theme = "blush";
+      try {
+        var saved = localStorage.getItem("ss-theme");
+        /* Older themes are gone — fall back rather than ship an unknown key. */
+        if (saved && themes.indexOf(saved) !== -1) theme = saved;
+      } catch (e) {}
+      document.documentElement.setAttribute("data-theme", theme);
+      // Lets the stylesheet tell "JS is running" apart from "JS is off".
+      document.documentElement.classList.add("js");
+    })();
+  </script>
+  <link rel="stylesheet" href="styles.css" />
+  <noscript>
+    <style>
+      .reveal { opacity: 1; translate: none; }
+    </style>
+  </noscript>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- Ambient background layer (canvas + readability scrim), then the page -->
+  <canvas id="bgMesh" class="bg-mesh" aria-hidden="true"></canvas>
+  <div class="bg-scrim" aria-hidden="true"></div>
+
+  <header class="site-header" id="siteHeader">
+    <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+    <div class="wrap header-inner">
+      <a class="logo" href="#top" aria-label="Sohail and Shiraz, home">
+        <span class="logo-mark" aria-hidden="true">
+          <svg viewBox="0 0 64 64" focusable="false" aria-hidden="true">
+            <defs>
+              <linearGradient id="ssMark" x1="0" y1="0" x2="1" y2="1">
+                <stop class="mark-stop-1" offset="0%" />
+                <stop class="mark-stop-2" offset="52%" />
+                <stop class="mark-stop-3" offset="100%" />
+              </linearGradient>
+              <clipPath id="ssMarkClip">
+                <rect x="2" y="2" width="60" height="60" rx="18" />
+              </clipPath>
+            </defs>
+            <g clip-path="url(#ssMarkClip)">
+              <rect class="mark-badge" x="2" y="2" width="60" height="60" rx="18" fill="url(#ssMark)" />
+              <ellipse class="mark-sheen" cx="18" cy="12" rx="30" ry="20" fill="#ffffff" opacity="0.28" />
+            </g>
+            <path class="mark-s" d="M43 22C43 17.1 38.4 13.8 32 13.8C25.6 13.8 20.8 17.5 20.8 22.4C20.8 27 24.8 29.5 32 31.1C39.2 32.7 43.2 35.1 43.2 40.2C43.2 45.4 38.4 49 32 49C25.6 49 20.8 45.6 20.8 41.1"
+                  fill="none" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </span>
+        <span class="logo-text">
+          <span class="logo-name">Sohail <span class="amp">&amp;</span> Shiraz</span>
+          <span class="logo-tagline">Digital marketing studio</span>
+        </span>
+      </a>
+
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="primaryNav" aria-label="Open menu">
+        <span class="nav-toggle-bars" aria-hidden="true"></span>
+      </button>
+
+      <nav class="primary-nav" id="primaryNav" aria-label="Primary">
+        <ul>
+          <li><a href="#top">Home</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <a class="btn btn-sm btn-primary nav-cta" href="#contact">Get a free audit</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- Hero -->
+    <section class="hero" id="top">
+      <div class="hero-glow" aria-hidden="true"></div>
+      <div class="hero-orbs" aria-hidden="true">
+        <span class="orb orb-1"></span>
+        <span class="orb orb-2"></span>
+        <span class="orb orb-3"></span>
+      </div>
+      <div class="wrap hero-inner">
+        <div class="hero-copy">
+          <p class="eyebrow reveal">Sohail <span class="amp">&amp;</span> Shiraz Company</p>
+
+          <h1 class="hero-title">
+            <span class="hero-line" data-split="words">We grow brands that</span>
+            <span class="hero-line gradient-text" data-wipe>refuse to blend in.</span>
+          </h1>
+
+          <p class="hero-lede reveal">
+            Sohail <span class="amp">&amp;</span> Shiraz is a two-partner studio building
+            campaigns that move real numbers — more qualified traffic, more
+            conversions, less wasted spend.
+          </p>
+
+          <div class="hero-actions reveal">
+            <a class="btn btn-primary magnet" href="#contact">Start a project</a>
+            <a class="btn btn-ghost magnet" href="#services">See what we do</a>
+          </div>
+
+          <dl class="stats glass reveal">
+            <div class="stat" style="--stat-delay: 0ms">
+              <dt>Campaigns launched</dt>
+              <dd><span class="count" data-to="240" data-suffix="+">240+</span></dd>
+            </div>
+            <div class="stat" style="--stat-delay: 120ms">
+              <dt>Average ROAS</dt>
+              <dd><span class="count" data-to="4.8" data-decimals="1" data-suffix="&times;">4.8&times;</span></dd>
+            </div>
+            <div class="stat" style="--stat-delay: 240ms">
+              <dt>Client retention</dt>
+              <dd><span class="count" data-to="98" data-suffix="%">98%</span></dd>
+            </div>
+          </dl>
+        </div>
+
+        <!-- Decorative glass composition -->
+        <div class="hero-stage" aria-hidden="true">
+          <span class="stage-glow"></span>
+          <div class="glass-card hero-panel" data-parallax="0.08">
+            <div class="panel-head">
+              <span class="panel-dots"><i></i><i></i><i></i></span>
+              <span class="panel-title">Campaign performance</span>
+            </div>
+
+            <div class="panel-bars">
+              <span style="--h: 44%; --d: 0ms"></span>
+              <span style="--h: 70%; --d: 90ms"></span>
+              <span style="--h: 32%; --d: 180ms"></span>
+              <span style="--h: 88%; --d: 270ms"></span>
+              <span style="--h: 56%; --d: 360ms"></span>
+              <span style="--h: 74%; --d: 450ms"></span>
+              <span style="--h: 40%; --d: 540ms"></span>
+            </div>
+
+            <div class="panel-foot">
+              <span class="panel-metric"><strong>+184%</strong><em>qualified traffic</em></span>
+              <span class="panel-chip">ROAS 4.8&times;</span>
+            </div>
+          </div>
+
+          <span class="glass-pill hero-pill pill-a" data-parallax="0.26">SEO</span>
+          <span class="glass-pill hero-pill pill-b" data-parallax="0.34">Paid Social</span>
+          <span class="glass-pill hero-pill pill-c" data-parallax="0.2">CRO</span>
+        </div>
+      </div>
+
+      <a class="scroll-cue" href="#services" aria-label="Scroll to services">
+        <span class="scroll-cue-line" aria-hidden="true"></span>
+        <span class="scroll-cue-text">Scroll</span>
+      </a>
+    </section>
+
+    <!-- Scrolling band -->
+    <div class="band" aria-hidden="true">
+      <div class="band-track">
+        <span>SEO</span><span class="dot">&bull;</span>
+        <span>Paid Social</span><span class="dot">&bull;</span>
+        <span>Google Ads</span><span class="dot">&bull;</span>
+        <span>Brand Strategy</span><span class="dot">&bull;</span>
+        <span>Content</span><span class="dot">&bull;</span>
+        <span>Email</span><span class="dot">&bull;</span>
+        <span>Analytics</span><span class="dot">&bull;</span>
+        <span>CRO</span><span class="dot">&bull;</span>
+        <span>SEO</span><span class="dot">&bull;</span>
+        <span>Paid Social</span><span class="dot">&bull;</span>
+        <span>Google Ads</span><span class="dot">&bull;</span>
+        <span>Brand Strategy</span><span class="dot">&bull;</span>
+        <span>Content</span><span class="dot">&bull;</span>
+        <span>Email</span><span class="dot">&bull;</span>
+        <span>Analytics</span><span class="dot">&bull;</span>
+        <span>CRO</span><span class="dot">&bull;</span>
+      </div>
+    </div>
+
+    <!-- Services -->
+    <section class="section" id="services">
+      <span class="section-blob blob-1" aria-hidden="true" data-parallax="0.22"></span>
+      <span class="section-blob blob-2" aria-hidden="true" data-parallax="0.36"></span>
+      <div class="wrap">
+        <div class="section-head reveal">
+          <p class="eyebrow">Services</p>
+          <h2 data-wipe>Everything you need to be <span class="gradient-text">found, and chosen.</span></h2>
+          <p class="section-sub">
+            Pick one channel or hand us the whole funnel. Every engagement starts
+            with the numbers and ends with a report you can actually read.
+          </p>
+        </div>
+
+        <div class="cards">
+          <article class="card reveal" data-tilt style="--accent-1: var(--pink); --accent-2: var(--orange)">
+            <span class="card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+            </span>
+            <h3>SEO &amp; Content</h3>
+            <p>Technical fixes, keyword strategy and content that earns rankings instead of buying them.</p>
+          </article>
+
+          <article class="card reveal" data-tilt style="--accent-1: var(--orange); --accent-2: var(--amber)">
+            <span class="card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 18V9M10 18V5M16 18v-6M22 18H2"/></svg>
+            </span>
+            <h3>Paid Advertising</h3>
+            <p>Google, Meta and LinkedIn campaigns built around creative testing and tight cost controls.</p>
+          </article>
+
+          <article class="card reveal" data-tilt style="--accent-1: var(--amber); --accent-2: var(--pink)">
+            <span class="card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H8l-4 4z"/><path d="M8 9h8M8 12h5"/></svg>
+            </span>
+            <h3>Social Media</h3>
+            <p>Always-on content calendars and community management that keep your brand in the feed.</p>
+          </article>
+
+          <article class="card reveal" data-tilt style="--accent-1: var(--pink); --accent-2: var(--amber)">
+            <span class="card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.5 5.6 6 .6-4.5 4 1.3 6-5.3-3-5.3 3 1.3-6-4.5-4 6-.6z"/></svg>
+            </span>
+            <h3>Brand Strategy</h3>
+            <p>Positioning, messaging and visual direction so every touchpoint says the same thing.</p>
+          </article>
+
+          <article class="card reveal" data-tilt style="--accent-1: var(--orange); --accent-2: var(--pink)">
+            <span class="card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+            </span>
+            <h3>Email &amp; Automation</h3>
+            <p>Lifecycle flows and newsletters that turn one-time buyers into repeat customers.</p>
+          </article>
+
+          <article class="card reveal" data-tilt style="--accent-1: var(--amber); --accent-2: var(--orange)">
+            <span class="card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21a9 9 0 1 1 9-9"/><path d="M12 12l5 3"/><path d="M21 12h-3"/></svg>
+            </span>
+            <h3>Analytics &amp; CRO</h3>
+            <p>Clean tracking, honest dashboards and landing page tests that lift conversion rate.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section class="section section-alt" id="about">
+      <span class="section-blob blob-3" aria-hidden="true" data-parallax="0.28"></span>
+      <div class="wrap about-grid">
+        <div class="about-visual reveal">
+          <figure class="avatar avatar-photo avatar-a" id="photoSohail">
+            <span class="avatar-fallback" aria-hidden="true">S</span>
+            <img src="sohail.jpg" alt="" />
+            <figcaption class="avatar-name">Sohail</figcaption>
+          </figure>
+
+          <figure class="avatar avatar-photo avatar-b" id="photoShiraz">
+            <span class="avatar-fallback" aria-hidden="true">S</span>
+            <img src="shiraz.jpg" alt="" />
+            <figcaption class="avatar-name">Shiraz</figcaption>
+          </figure>
+
+          <div class="about-badge">
+            <strong>Est. 2019</strong>
+            <span>Two partners, zero hand-offs</span>
+          </div>
+        </div>
+
+        <div class="about-copy reveal">
+          <p class="eyebrow">About us</p>
+          <h2 data-wipe>Two partners. One obsession: <span class="gradient-text">measurable growth.</span></h2>
+          <p class="lead">
+            Sohail and Shiraz met over a spreadsheet that nobody wanted to own and
+            decided to build the agency they wished they could hire. No account
+            managers relaying messages, no dashboards that hide the truth — just the
+            two people doing the work, talking to you directly.
+          </p>
+          <p>
+            We take on a small number of clients at a time so every campaign gets
+            real attention. If we don't think we can move your numbers, we'll say so
+            before you spend a rupee, dollar or pound.
+          </p>
+
+          <ul class="principles">
+            <li><span aria-hidden="true">◆</span> Strategy before spend</li>
+            <li><span aria-hidden="true">◆</span> Plain-English reporting</li>
+            <li><span aria-hidden="true">◆</span> No lock-in contracts</li>
+          </ul>
+
+          <div class="signature">
+            <span class="signature-names">Sohail &amp; Shiraz</span>
+            <span class="signature-role">Founders</span>
+          </div>
+
+          <a class="btn btn-primary" href="#contact">Work with us</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="section" id="contact">
+      <span class="section-blob blob-4" aria-hidden="true" data-parallax="0.24"></span>
+      <div class="wrap">
+        <div class="section-head reveal">
+          <p class="eyebrow">Contact</p>
+          <h2 data-wipe>Let's find the <span class="gradient-text">growth hiding in your funnel.</span></h2>
+          <p class="section-sub">
+            Tell us a little about your business and we'll come back within two
+            working days with an honest read and a free first-look audit.
+          </p>
+        </div>
+
+        <div class="contact-grid">
+          <div class="contact-info reveal">
+            <div class="info-item">
+              <span class="info-label">Email</span>
+              <a href="mailto:hello@example.com">hello@example.com</a>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Phone</span>
+              <a href="tel:+15550100199">+1 (555) 010-0199</a>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Studio</span>
+              <p>123 Placeholder Street<br />Suite 400, Your City</p>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Hours</span>
+              <p>Mon&ndash;Fri, 9:00&ndash;18:00</p>
+            </div>
+            <p class="placeholder-note">Placeholder details — swap these for your real contact information.</p>
+          </div>
+
+          <form class="contact-form reveal" id="contactForm" novalidate>
+            <div class="field">
+              <label for="name">Your name</label>
+              <input type="text" id="name" name="name" autocomplete="name" placeholder="Jane Doe" required />
+              <p class="field-error" data-error-for="name"></p>
+            </div>
+
+            <div class="field">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" autocomplete="email" placeholder="jane@company.com" required />
+              <p class="field-error" data-error-for="email"></p>
+            </div>
+
+            <div class="field">
+              <label for="service">What do you need?</label>
+              <select id="service" name="service">
+                <option value="">Not sure yet</option>
+                <option>SEO &amp; Content</option>
+                <option>Paid Advertising</option>
+                <option>Social Media</option>
+                <option>Brand Strategy</option>
+                <option>Email &amp; Automation</option>
+                <option>Analytics &amp; CRO</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="message">Project details</label>
+              <textarea id="message" name="message" rows="5" placeholder="A sentence or two about your goals…" required></textarea>
+              <p class="field-error" data-error-for="message"></p>
+            </div>
+
+            <button class="btn btn-primary btn-block" type="submit">Send message</button>
+            <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <div class="footer-brand">
+        <span class="logo-mark" aria-hidden="true">
+          <svg viewBox="0 0 64 64" focusable="false" aria-hidden="true">
+            <defs>
+              <linearGradient id="ssMarkFooter" x1="0" y1="0" x2="1" y2="1">
+                <stop class="mark-stop-1" offset="0%" />
+                <stop class="mark-stop-2" offset="52%" />
+                <stop class="mark-stop-3" offset="100%" />
+              </linearGradient>
+            </defs>
+            <rect class="mark-badge" x="2" y="2" width="60" height="60" rx="18" fill="url(#ssMarkFooter)" />
+            <path class="mark-s" d="M43 22C43 17.1 38.4 13.8 32 13.8C25.6 13.8 20.8 17.5 20.8 22.4C20.8 27 24.8 29.5 32 31.1C39.2 32.7 43.2 35.1 43.2 40.2C43.2 45.4 38.4 49 32 49C25.6 49 20.8 45.6 20.8 41.1"
+                  fill="none" stroke="url(#ssMarkFooter)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </span>
+        <span class="footer-name">Sohail <span class="amp">&amp;</span> Shiraz</span>
+      </div>
+
+      <nav class="footer-nav" aria-label="Footer">
+        <a href="#top">Home</a>
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <p class="footer-copy">&copy; <span id="year">2026</span> Sohail <span class="amp">&amp;</span> Shiraz. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <div class="theme-dock" id="themeDock" role="group" aria-label="Colour theme">
+    <span class="theme-dock-label" aria-hidden="true">Theme</span>
+
+    <button class="theme-chip" type="button" data-theme-value="blush" aria-pressed="true">
+      <span class="theme-chip-dot" aria-hidden="true"></span>
+      <span class="theme-chip-name">Blush</span>
+    </button>
+
+    <button class="theme-chip" type="button" data-theme-value="reddish" aria-pressed="false">
+      <span class="theme-chip-dot" aria-hidden="true"></span>
+      <span class="theme-chip-name">Reddish</span>
+    </button>
+
+    <button class="theme-chip" type="button" data-theme-value="yellow" aria-pressed="false">
+      <span class="theme-chip-dot" aria-hidden="true"></span>
+      <span class="theme-chip-name">Yellow</span>
+    </button>
+
+    <button class="theme-chip" type="button" data-theme-value="wine" aria-pressed="false">
+      <span class="theme-chip-dot" aria-hidden="true"></span>
+      <span class="theme-chip-name">Wine</span>
+    </button>
+  </div>
+
+  <!-- Animation libraries. script.js feature-detects these and falls back to
+       the CSS + IntersectionObserver layer if the CDN is unavailable. -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/motion@12/dist/motion.min.js"></script>
+  <script src="background.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

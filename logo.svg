@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Sohail and Shiraz logo mark">
+  <title>Sohail &amp; Shiraz</title>
+  <defs>
+    <linearGradient id="ssMark" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FF4D8D" />
+      <stop offset="52%" stop-color="#FF8A3D" />
+      <stop offset="100%" stop-color="#FFD93D" />
+    </linearGradient>
+    <clipPath id="ssMarkClip">
+      <rect x="2" y="2" width="60" height="60" rx="18" />
+    </clipPath>
+  </defs>
+  <g clip-path="url(#ssMarkClip)">
+    <rect x="2" y="2" width="60" height="60" rx="18" fill="url(#ssMark)" />
+    <ellipse cx="18" cy="12" rx="30" ry="20" fill="#ffffff" opacity="0.28" />
+  </g>
+  <path d="M43 22C43 17.1 38.4 13.8 32 13.8C25.6 13.8 20.8 17.5 20.8 22.4C20.8 27 24.8 29.5 32 31.1C39.2 32.7 43.2 35.1 43.2 40.2C43.2 45.4 38.4 49 32 49C25.6 49 20.8 45.6 20.8 41.1"
+        fill="none" stroke="#3A0A1E" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" />
+</svg>
