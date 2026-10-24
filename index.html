@@ -8,7 +8,7 @@
   <meta name="description" content="Digital marketing studio for ambitious brands: SEO, paid ads, social, brand strategy, email and CRO. Two partners, no hand-offs." />
   <meta name="author" content="Sohail &amp; Shiraz" />
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
-  <meta name="theme-color" content="#e8a0b6" />
+  <meta name="theme-color" content="#2A0716" />
   <link rel="canonical" href="https://sohailandshiraz.com/" />
 
   <!-- Open Graph -->
@@ -34,21 +34,8 @@
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="logo-512.png" />
 
-  <!-- Theme bootstrap: runs before first paint so the page never flashes the wrong palette. -->
-  <script>
-    (function () {
-      var themes = ["blush", "reddish", "yellow", "wine"];
-      var theme = "blush";
-      try {
-        var saved = localStorage.getItem("ss-theme");
-        /* Older themes are gone — fall back rather than ship an unknown key. */
-        if (saved && themes.indexOf(saved) !== -1) theme = saved;
-      } catch (e) {}
-      document.documentElement.setAttribute("data-theme", theme);
-      // Lets the stylesheet tell "JS is running" apart from "JS is off".
-      document.documentElement.classList.add("js");
-    })();
-  </script>
+  <!-- Marks JS as available before first paint (reveal animations depend on it). -->
+  <script>document.documentElement.classList.add("js");</script>
 
   <!-- Preconnect & DNS Prefetch (placed early for fastest resolution) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -782,30 +769,6 @@
       <p class="footer-copy">&copy; <span id="year">2026</span> Sohail <span class="amp">&amp;</span> Shiraz. All rights reserved.</p>
     </div>
   </footer>
-
-  <div class="theme-dock" id="themeDock" role="group" aria-label="Colour theme" data-nosnippet>
-    <span class="theme-dock-label" aria-hidden="true">Theme</span>
-
-    <button class="theme-chip" type="button" data-theme-value="blush" aria-pressed="true">
-      <span class="theme-chip-dot" aria-hidden="true"></span>
-      <span class="theme-chip-name">Blush</span>
-    </button>
-
-    <button class="theme-chip" type="button" data-theme-value="reddish" aria-pressed="false">
-      <span class="theme-chip-dot" aria-hidden="true"></span>
-      <span class="theme-chip-name">Reddish</span>
-    </button>
-
-    <button class="theme-chip" type="button" data-theme-value="yellow" aria-pressed="false">
-      <span class="theme-chip-dot" aria-hidden="true"></span>
-      <span class="theme-chip-name">Yellow</span>
-    </button>
-
-    <button class="theme-chip" type="button" data-theme-value="wine" aria-pressed="false">
-      <span class="theme-chip-dot" aria-hidden="true"></span>
-      <span class="theme-chip-name">Wine</span>
-    </button>
-  </div>
 
   <!-- Animation libraries. script.js feature-detects these and falls back to
        the CSS + IntersectionObserver layer if the CDN is unavailable. -->

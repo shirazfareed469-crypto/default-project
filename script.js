@@ -291,49 +291,8 @@
     if (img.complete && img.naturalWidth === 0) loadPhoto();
   });
 
-  /* ---------- Colour themes ---------- */
+  /* ---------- Document root ---------- */
   var root = document.documentElement;
-  var THEME_KEY = "ss-theme";
-  var THEMES = ["blush", "reddish", "yellow", "wine"];
-  var DEFAULT_THEME = "blush";
-  var themeButtons = Array.prototype.slice.call(document.querySelectorAll(".theme-chip"));
-
-  function knownTheme(name) {
-    return THEMES.indexOf(name) !== -1 ? name : DEFAULT_THEME;
-  }
-
-  function savedTheme() {
-    try {
-      var stored = window.localStorage.getItem(THEME_KEY);
-      if (stored) return knownTheme(stored);
-    } catch (e) { /* storage blocked — fall through */ }
-    return knownTheme(root.getAttribute("data-theme"));
-  }
-
-  function applyTheme(name, persist) {
-    name = knownTheme(name);
-    root.setAttribute("data-theme", name);
-
-    themeButtons.forEach(function (button) {
-      var active = button.getAttribute("data-theme-value") === name;
-      button.setAttribute("aria-pressed", String(active));
-    });
-
-    if (persist) {
-      try { window.localStorage.setItem(THEME_KEY, name); } catch (e) { /* ignore */ }
-    }
-  }
-
-  if (themeButtons.length) {
-    themeButtons.forEach(function (button) {
-      button.addEventListener("click", function () {
-        applyTheme(button.getAttribute("data-theme-value"), true);
-      });
-    });
-
-    // Sync the buttons with whatever the head script already applied.
-    applyTheme(savedTheme(), false);
-  }
 
   /* ---------- Footer year ---------- */
   var year = document.getElementById("year");
@@ -573,15 +532,6 @@
       animation.finished.then(function () { el.style.removeProperty("transform"); });
     }
     return animation;
-  }
-
-  if (motionReady && !reduceMotion) {
-    // Every theme switch gets a small spring, on touch as well as pointer.
-    themeButtons.forEach(function (button) {
-      button.addEventListener("click", function () {
-        springTo(button, { scale: [1, 0.93, 1] }, { duration: 0.32, ease: "easeOut" });
-      });
-    });
   }
 
   if (motionReady && finePointer && !reduceMotion) {

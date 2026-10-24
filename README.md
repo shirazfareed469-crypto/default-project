@@ -6,7 +6,7 @@ package manager, nothing to install.
 
 The page is designed to feel alive: a slow animated background canvas behind
 every section, scroll-triggered reveals, word-by-word headline animation,
-tilt-on-hover cards and four fully switchable colour themes.
+tilt-on-hover cards and a dark wine palette.
 
 ---
 
@@ -14,8 +14,8 @@ tilt-on-hover cards and four fully switchable colour themes.
 
 Only one step: open `index.html` in a browser.
 
-A local server is recommended though, because the theme preference is stored in
-`localStorage`, and some browsers restrict that on `file://` URLs.
+A local server is still worth using for realistic testing — browsers treat
+`file://` inconsistently — but the page has no server dependency.
 
 If you have Python installed:
 
@@ -36,8 +36,8 @@ python -m http.server 8000
 ```
 Default Project/
 ├── index.html            Markup, head metadata and all JSON-LD structured data
-├── styles.css            All styling: tokens, themes, layout, components
-├── script.js             Navigation, reveals, counters, form, theme switching
+├── styles.css            All styling: tokens, palette, layout, components
+├── script.js             Navigation, reveals, counters, form, motion
 ├── background.js         Animated canvas layer behind the page
 ├── favicon.svg           Browser tab icon (self-contained)
 ├── logo.svg              Standalone logo mark (self-contained)
@@ -75,56 +75,41 @@ a persistent "Get a free audit" CTA.
 
 ---
 
-## Colour themes
+## Palette
 
-Four themes ship in the box. They are switched from the floating dock in the
-bottom-right corner and the choice persists across reloads.
+One palette ships: **Wine** — a deep wine page, cream type and neon pink/orange
+accents. There is no switcher; the colours are fixed.
 
-| Key        | Label   | Page tone      | Scheme | Primary accent |
-|------------|---------|----------------|--------|----------------|
-| `blush`    | Blush   | Warm cream     | light  | `#FF4D8D` pink |
-| `reddish`  | Reddish | Rose cream     | light  | `#FF4D4D` red |
-| `yellow`   | Yellow  | Butter         | light  | `#FFC107` amber |
-| `wine`     | Wine    | Deep wine      | dark   | `#FF6FA5` pink |
+| Role | Token | Value |
+|---|---|---|
+| Page | `--bg-base` | `#3A0A1E → #2A0716 → #1E0510` |
+| Body text | `--ink` | `#FFF1E6` |
+| Muted text | `--ink-soft` | `#EFCBD5` |
+| Primary accent | `--pink` | `#FF6FA5` |
+| Links / hover | `--deep-pink` | `#FFC2D6` |
+| Accent gradient | `--g-warm` | `#C21F58 → #A61E5C → #7A1440` |
+| Warm highlights | `--amber` / `--yellow` | `#FFC94D` / `#FFE28A` |
 
-### How switching works
+`color-scheme: dark` is declared on `:root`, so native form controls, scrollbars
+and the browser's own chrome follow the dark palette.
 
-The active theme is an attribute on the root element:
+### Changing the palette
 
-```html
-<html data-theme="wine">
-```
+Every colour is a custom property declared once in `:root` at the top of
+`styles.css`. Change the values there and the whole page follows — components only
+ever read tokens, never raw colours. The one exception is the `--bgm-*` triplets
+read by JavaScript (see *Design tokens*).
 
-`blush` is the default and lives in `:root`, so it needs no attribute at all.
-Every other theme is a `[data-theme="…"]` block that **only re-declares design
-tokens** — no component rules are duplicated.
-
-Two places know the theme list, and they must stay in sync:
-
-1. The inline bootstrap script in the `<head>` of `index.html` — applies the
-   saved theme *before first paint* so there is no colour flash.
-2. `THEMES` / `DEFAULT_THEME` in `script.js` — handles the dock buttons.
-
-Both validate the stored value (`localStorage` key `ss-theme`) against the known
-list and silently fall back to the default, so an old or hand-edited value can
-never leave the page unstyled.
-
-### Adding a fifth theme
-
-1. Copy any `[data-theme="…"]` block in `styles.css` and rename it.
-2. Change the colour values inside it.
-3. Add the key to `themes` in `index.html` and `THEMES` in `script.js`.
-4. Add a matching `.theme-chip[data-theme-value="…"] .theme-chip-dot` swatch rule
-   and a `<button class="theme-chip">` in the dock.
-
-Nothing else needs touching.
+To reintroduce switchable themes, add `[data-theme="…"]` blocks that re-declare
+the same tokens and set the attribute on `<html>`. No component rules need
+duplicating.
 
 ---
 
 ## Design tokens
 
-Every colour on the site is a CSS custom property, so a theme is just a list of
-values. The important groups:
+Every colour on the site is a CSS custom property, so the palette is just a list
+of values. The important groups:
 
 | Group | Tokens | Purpose |
 |-------|--------|---------|
@@ -141,8 +126,8 @@ values. The important groups:
 Two rules worth remembering when editing:
 
 - **`--on-warm` must contrast with `--g-warm`.** Anything filled with `--g-warm`
-  (primary buttons, the pressed theme chip, nav pills, the eyebrow) writes its
-  text in `--on-warm`. If you change one, check the other.
+  (primary buttons, nav pills, the eyebrow) writes its text in `--on-warm`. If
+  you change one, check the other.
 - **`--bgm-*` values are literal `"r, g, b"` triplets**, not colours — they are
   parsed by JavaScript, where `var()` cannot be resolved. Keep them in that form.
 
@@ -192,9 +177,8 @@ pixel ratio, a static single frame under `prefers-reduced-motion`, and a pause
 whenever the tab is hidden.
 
 Because the canvas is transparent and `position: fixed`, it shows through every
-section. It reads its palette from the `--bgm-*` tokens and re-reads them on a
-`MutationObserver` watching `data-theme`, so switching themes recolours the light
-show automatically.
+section. It reads its palette from the `--bgm-*` tokens on start-up, and
+`window.__bgMesh.refresh()` re-reads them if you change the palette at runtime.
 
 A sibling `.bg-scrim` div sits between the canvas and the content to keep text
 readable over the brightest parts.
@@ -225,15 +209,10 @@ instead of snapping at fixed widths. The structural breakpoints are:
 | Query | What changes |
 |---|---|
 | `min-width: 1400px` | Wider content column (`--wrap: 1240px`), roomier sections |
-| `max-width: 900px` | About and contact grids go single-column; the decorative hero stage and scroll cue are hidden |
-| `max-width: 780px` | Primary nav becomes the toggle menu; form fields jump to 16px (stops iOS auto-zoom on focus); nav CTA goes full width |
+| `max-width: 900px` | About and contact grids go single-column; hero stage and scroll cue hidden; primary nav becomes the toggle menu; form fields jump to 16px (stops iOS auto-zoom); nav CTA goes full width |
 | `max-width: 560px` | Tighter section padding; stats stay three-across; footer stacks |
-| `max-width: 460px` | Smaller logo, tagline hidden, full-width hero buttons, theme dock reduces to swatches only |
+| `max-width: 460px` | Smaller logo, tagline hidden, full-width hero buttons |
 | `hover: none` | Hover-only effects neutralised so they don't stick after a tap |
-
-The theme dock is deliberately small so it never competes with content: it sits
-in the bottom-right corner as a pill of swatches, and the footer picks up extra
-bottom padding on small screens so the dock never covers it.
 
 ---
 
@@ -349,13 +328,10 @@ The site ships with clearly-marked demo content. Search for these and swap them:
 - **Animation libraries load from a CDN** (GSAP 3.13, ScrollTrigger, Motion 12).
   Self-host them if you need the site to work fully offline or under a strict
   content-security policy.
-- **Theme choice is per-browser.** It lives in `localStorage`, so it does not
-  follow the visitor between devices, and it is not shared with server-rendered
-  pages.
-- **Two decorative elements sit below the 4.5:1 contrast ratio** in every theme:
-  the `•` separators in the stats band (~2.5:1) and the small italic ampersand in
-  the footer (~3.7:1). Both are ornamental and are legible by design intent, but
-  raise `--on-2` / `--on-3` in the theme blocks if you want strict AA everywhere.
+- **Two decorative elements sit below the 4.5:1 contrast ratio**: the `•`
+  separators in the stats band (~2.5:1) and the small italic ampersand in the
+  footer (~3.7:1). Both are ornamental and legible by design intent, but raise
+  `--on-2` / `--on-3` in `:root` if you want strict AA everywhere.
 
 ---
 

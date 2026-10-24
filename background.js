@@ -514,20 +514,6 @@
     }
   }
 
-  // The theme switcher flips data-theme on <html>; recolour when it does.
-  var paletteQueued = false;
-  function onThemeChange() {
-    if (paletteQueued) return;
-    paletteQueued = true;
-    soon(function () {
-      paletteQueued = false;
-      readPalette();
-      if (!running) draw();
-    });
-  }
-
-  var themeObserver = new MutationObserver(onThemeChange);
-
   window.addEventListener("resize", onResize, { passive: true });
   window.addEventListener("orientationchange", onResize, { passive: true });
   window.addEventListener("pointermove", onPointerMove, { passive: true });
@@ -538,8 +524,6 @@
 
   if (reduceQuery.addEventListener) reduceQuery.addEventListener("change", onMotionChange);
   else if (reduceQuery.addListener) reduceQuery.addListener(onMotionChange);
-
-  themeObserver.observe(root, { attributes: true, attributeFilter: ["data-theme"] });
 
   /* ----------------------------------------------------------- bootstrap --- */
 
@@ -555,7 +539,6 @@
     },
     destroy: function () {
       stop();
-      themeObserver.disconnect();
       window.removeEventListener("resize", onResize);
       window.removeEventListener("orientationchange", onResize);
       window.removeEventListener("pointermove", onPointerMove);

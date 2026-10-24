@@ -1,355 +1,31 @@
 /* ==========================================================================
    Sohail & Shiraz — Digital Marketing Studio
-   Warm palette: Pink / Magenta / Orange / Amber / Yellow.
-   Four themes: Blush (default), Reddish, Yellow, Wine.
+   Wine palette: deep wine page, cream type, neon pink/orange accents.
    ========================================================================== */
 
 /* ==========================================================================
    TOKENS
-   Every colour the site uses lives here as a variable. The themes further
-   down re-declare these same tokens, which is why one attribute flip
-   re-colours the whole page.
+   Every colour the site uses lives here as a variable, so the whole palette
+   can be retuned from one place.
    ========================================================================== */
 :root {
-  /* Brand ramp — each theme block below re-declares these, so the names stay
-     generic. Pink carries the CTAs, orange and yellow supply the warm accents. */
-  --pink: #FF4D8D;        /* primary — buttons, badges, highlights */
-  --deep-pink: #C2185B;   /* links, hover, ampersands */
-  --magenta: #A61E5C;     /* deep accent */
-  --orange: #FF8A3D;      /* warm accent */
-  --amber: #FFB020;       /* warm accent */
-  --yellow: #FFD93D;      /* highlight */
+  /* Brand ramp — Wine: neon pink accent on a deep wine page. */
+  --pink: #FF6FA5;        /* primary — buttons, badges, highlights */
+  --deep-pink: #FFC2D6;   /* links, hover, ampersands */
+  --magenta: #C2185B;     /* deep accent */
+  --orange: #FFA45C;      /* warm accent */
+  --amber: #FFC94D;       /* warm accent */
+  --yellow: #FFE28A;      /* highlight */
   --lemon: #FFF6BF;       /* pale wash */
 
   /* Ink */
-  --ink: #3A0A1E;
-  --ink-soft: #7C4A5E;
-  --line: #F3CBD9;
-  --line-soft: #FBE4EC;
-
-  /* Gradient system. --g-warm and --g-warm-v carry --on-warm text (buttons,
-     eyebrow, nav pills, pressed chip), so they must stay darker than it. */
-  --g-warm: linear-gradient(100deg, #FF4D8D, #FF7A4D 52%, #FFB020);
-  --g-warm-rev: linear-gradient(100deg, #FFB020, #FF7A4D 48%, #FF4D8D);
-  --g-warm-v: linear-gradient(150deg, #FF4D8D, #FF7A4D 56%, #FFB020);
-  --g-sunset: linear-gradient(120deg, #FFB020, #FFD93D 48%, #FFC2D6);
-  --g-panel: linear-gradient(150deg, #FFE9A8, #FFD93D 50%, #FFD0E0);
-  --g-text: linear-gradient(100deg, #C2185B, #A61E5C 50%, #E2551F);
-  --g-soft: linear-gradient(180deg, #FFF8F4, #FFECF2 50%, #FFF4E6);
-  --on-warm: #3A0A1E;
-
-  /* Page canvas */
-  --bg-base: linear-gradient(165deg, #FFF9F5 0%, #FFEEF3 45%, #FFF7EA 100%);
-  --bg-glow-a: radial-gradient(60% 46% at 10% 4%, rgba(255, 77, 141, 0.26), transparent 62%);
-  --bg-glow-b: radial-gradient(55% 42% at 92% 2%, rgba(255, 176, 32, 0.30), transparent 64%);
-  --bg-glow-c: radial-gradient(70% 55% at 50% 100%, rgba(255, 217, 61, 0.34), transparent 68%);
-
-  /* Hero atmosphere */
-  --hero-glow-a: radial-gradient(34% 44% at 16% 28%, rgba(255, 77, 141, 0.32), transparent 70%);
-  --hero-glow-b: radial-gradient(32% 40% at 76% 20%, rgba(255, 176, 32, 0.36), transparent 70%);
-  --hero-glow-c: radial-gradient(38% 44% at 52% 66%, rgba(255, 217, 61, 0.42), transparent 72%);
-  --orb-a: radial-gradient(circle, rgba(255, 77, 141, 0.85), transparent 70%);
-  --orb-b: radial-gradient(circle, rgba(255, 176, 32, 0.85), transparent 70%);
-  --orb-c: radial-gradient(circle, rgba(255, 217, 61, 0.85), transparent 70%);
-
-  /* Surfaces */
-  --section-alt: linear-gradient(180deg, rgba(255, 77, 141, 0.10), rgba(255, 217, 61, 0.24) 50%, rgba(255, 138, 61, 0.14));
-  --card-bg: linear-gradient(180deg, rgba(255, 255, 255, 0.88), rgba(255, 246, 241, 0.66));
-  --form-bg: linear-gradient(180deg, rgba(255, 255, 255, 0.93), rgba(255, 248, 243, 0.78));
-  --about-bg: linear-gradient(150deg, rgba(255, 77, 141, 0.26), rgba(255, 217, 61, 0.42) 55%, rgba(255, 138, 61, 0.26)), #FFF1E6;
-  --badge-bg: rgba(255, 255, 255, 0.90);
-  --header-bg: rgba(255, 249, 245, 0.84);
-  --panel-bg: rgba(255, 250, 246, 0.98);
-  --glass: rgba(255, 255, 255, 0.60);
-  --glass-strong: rgba(255, 255, 255, 0.80);
-  --field-bg: #FFF3EC;
-  --field-bg-focus: #ffffff;
-  --field-invalid-bg: #FFEBEF;
-  --track: #FFEEE3;
-  --track-edge: #FFE0D0;
-  --avatar-fade: rgba(58, 10, 30, 0.75);
-  --success: #2F6B3F;
-  --focus: #C2185B;
-
-  /* Ambient background layer (read by background.js — keep these as literal
-     "r, g, b" triplets, since var() references do not resolve in JS) */
-  --bgm-m1: 255, 77, 141;
-  --bgm-m2: 255, 176, 32;
-  --bgm-m3: 255, 217, 61;
-  --bgm-link: 194, 24, 91;
-  --bgm-dot: 194, 24, 91;
-  --bgm-dot-2: 255, 138, 61;
-  --bgm-strength: 0.5;
-  --bgm-scrim: rgba(255, 249, 245, 0.30);
-  --bgm-light-1: 255, 176, 32;
-  --bgm-light-2: 255, 77, 141;
-  --bgm-light-3: 255, 217, 61;
-  --bgm-light-strength: 0.85;
-
-  /* Glassmorphism */
-  --glass-bg: rgba(255, 255, 255, 0.50);
-  --glass-bg-strong: rgba(255, 255, 255, 0.68);
-  --glass-border: rgba(255, 255, 255, 0.74);
-  --glass-shadow: 0 18px 46px rgba(194, 24, 91, 0.16);
-  --glass-blur: 18px;
-
-  /* Text that sits on a coloured panel (band, contact card, footer) */
-  --on-1: rgba(58, 10, 30, 0.80);
-  --on-2: rgba(58, 10, 30, 0.60);
-  --on-3: rgba(58, 10, 30, 0.45);
-  --on-deco: rgba(58, 10, 30, 0.40);
-  --on-line: rgba(58, 10, 30, 0.22);
-  --on-hover: #ffffff;
-
-  /* Logo — bright pink/orange/yellow mark; the badge in the footer is dark so
-     the same gradient can be used as its stroke. */
-  --mark-1: #FF4D8D;
-  --mark-2: #FF8A3D;
-  --mark-3: #FFD93D;
-  --mark-ink: #3A0A1E;
-  --mark-badge-fill: rgba(58, 10, 30, 0.92);
-
-  /* Depth */
-  --shadow-sm: 0 2px 8px rgba(194, 24, 91, 0.10);
-  --shadow-md: 0 12px 30px rgba(194, 24, 91, 0.16);
-  --shadow-lg: 0 24px 60px rgba(194, 24, 91, 0.22);
-  --shadow-btn: 0 16px 38px rgba(255, 77, 141, 0.34);
-  --shadow-header: 0 6px 24px rgba(194, 24, 91, 0.14);
-  --shadow-footer: 0 -8px 30px rgba(194, 24, 91, 0.16);
-  --shadow-mark: drop-shadow(0 6px 14px rgba(255, 77, 141, 0.36));
-  --shadow-mark-footer: drop-shadow(0 4px 10px rgba(194, 24, 91, 0.28));
-  --ring: 0 0 0 4px rgba(255, 77, 141, 0.22);
-
-  --radius: 18px;
-  --radius-lg: 28px;
-  --wrap: 1140px;
-
-  --font-display: "Space Grotesk", "Segoe UI", system-ui, sans-serif;
-  --font-serif: "Playfair Display", Georgia, "Times New Roman", serif;
-  --font-script: "Great Vibes", "Segoe Script", "Brush Script MT", cursive;
-  --font-body: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
-
-  color-scheme: light;
-}
-
-/* ==========================================================================
-   THEMES
-   The warm pink/orange/yellow scheme is the default and lives in :root above.
-   The blocks below only re-declare tokens, so one attribute flip re-colours
-   the whole page. Three light themes, one dark.
-   ========================================================================== */
-
-/* ---------- Reddish : crimson page, deep red type, flame accents ---------- */
-[data-theme="reddish"] {
-  --pink: #FF4D4D;
-  --deep-pink: #C2185B;
-  --magenta: #A61E5C;
-  --orange: #FF6B3D;
-  --amber: #FFA53D;
-  --yellow: #FFD06B;
-  --lemon: #FFF0C2;
-
-  --ink: #3A0812;
-  --ink-soft: #6E3843;
-  --line: #F4C9CF;
-  --line-soft: #FCE2E5;
-
-  --g-warm: linear-gradient(100deg, #FF4D4D, #E85D3D 52%, #FF9E3D);
-  --g-warm-rev: linear-gradient(100deg, #FF9E3D, #E85D3D 48%, #FF4D4D);
-  --g-warm-v: linear-gradient(150deg, #FF4D4D, #E85D3D 56%, #FF9E3D);
-  --g-sunset: linear-gradient(120deg, #FFA53D, #FFD06B 48%, #FF9EB4);
-  --g-panel: linear-gradient(150deg, #FFE0A8, #FFD06B 50%, #FFC0CE);
-  --g-text: linear-gradient(100deg, #B00D2E, #8E0B36 50%, #D9481F);
-  --g-soft: linear-gradient(180deg, #FFF6F4, #FFE9EA 50%, #FFF3E6);
-  --on-warm: #3A0812;
-
-  --bg-base: linear-gradient(165deg, #FFF8F6 0%, #FFEAEC 45%, #FFF6E9 100%);
-  --bg-glow-a: radial-gradient(60% 46% at 10% 4%, rgba(232, 20, 63, 0.24), transparent 62%);
-  --bg-glow-b: radial-gradient(55% 42% at 92% 2%, rgba(255, 165, 61, 0.30), transparent 64%);
-  --bg-glow-c: radial-gradient(70% 55% at 50% 100%, rgba(255, 208, 107, 0.34), transparent 68%);
-
-  --hero-glow-a: radial-gradient(34% 44% at 16% 28%, rgba(232, 20, 63, 0.30), transparent 70%);
-  --hero-glow-b: radial-gradient(32% 40% at 76% 20%, rgba(255, 165, 61, 0.36), transparent 70%);
-  --hero-glow-c: radial-gradient(38% 44% at 52% 66%, rgba(255, 208, 107, 0.42), transparent 72%);
-  --orb-a: radial-gradient(circle, rgba(232, 20, 63, 0.85), transparent 70%);
-  --orb-b: radial-gradient(circle, rgba(255, 165, 61, 0.85), transparent 70%);
-  --orb-c: radial-gradient(circle, rgba(255, 208, 107, 0.85), transparent 70%);
-
-  --section-alt: linear-gradient(180deg, rgba(232, 20, 63, 0.10), rgba(255, 208, 107, 0.24) 50%, rgba(255, 107, 61, 0.14));
-  --card-bg: linear-gradient(180deg, rgba(255, 255, 255, 0.88), rgba(255, 245, 243, 0.66));
-  --form-bg: linear-gradient(180deg, rgba(255, 255, 255, 0.93), rgba(255, 247, 245, 0.78));
-  --about-bg: linear-gradient(150deg, rgba(232, 20, 63, 0.26), rgba(255, 208, 107, 0.42) 55%, rgba(255, 107, 61, 0.26)), #FFF0EA;
-  --badge-bg: rgba(255, 255, 255, 0.90);
-  --header-bg: rgba(255, 248, 247, 0.84);
-  --panel-bg: rgba(255, 250, 248, 0.98);
-  --glass: rgba(255, 255, 255, 0.60);
-  --glass-strong: rgba(255, 255, 255, 0.80);
-  --field-bg: #FFF2EE;
-  --field-bg-focus: #ffffff;
-  --field-invalid-bg: #FFE9EC;
-  --track: #FFEDE8;
-  --track-edge: #FFDFD6;
-  --avatar-fade: rgba(58, 8, 18, 0.75);
-  --success: #2F6B3F;
-  --focus: #B00D2E;
-
-  --bgm-m1: 232, 20, 63;
-  --bgm-m2: 255, 165, 61;
-  --bgm-m3: 255, 208, 107;
-  --bgm-link: 176, 13, 46;
-  --bgm-dot: 176, 13, 46;
-  --bgm-dot-2: 255, 107, 61;
-  --bgm-strength: 0.5;
-  --bgm-scrim: rgba(255, 248, 246, 0.30);
-  --bgm-light-1: 255, 165, 61;
-  --bgm-light-2: 232, 20, 63;
-  --bgm-light-3: 255, 208, 107;
-  --bgm-light-strength: 0.85;
-
-  --glass-bg: rgba(255, 255, 255, 0.50);
-  --glass-bg-strong: rgba(255, 255, 255, 0.68);
-  --glass-border: rgba(255, 255, 255, 0.74);
-  --glass-shadow: 0 18px 46px rgba(176, 13, 46, 0.16);
-
-  --on-1: rgba(58, 8, 18, 0.80);
-  --on-2: rgba(58, 8, 18, 0.60);
-  --on-3: rgba(58, 8, 18, 0.45);
-  --on-deco: rgba(58, 8, 18, 0.40);
-  --on-line: rgba(58, 8, 18, 0.22);
-  --on-hover: #ffffff;
-
-  --mark-1: #FF4D4D;
-  --mark-2: #FF6B3D;
-  --mark-3: #FFD06B;
-  --mark-ink: #3A0812;
-  --mark-badge-fill: rgba(58, 8, 18, 0.92);
-
-  --shadow-sm: 0 2px 8px rgba(176, 13, 46, 0.10);
-  --shadow-md: 0 12px 30px rgba(176, 13, 46, 0.16);
-  --shadow-lg: 0 24px 60px rgba(176, 13, 46, 0.22);
-  --shadow-btn: 0 16px 38px rgba(232, 20, 63, 0.34);
-  --shadow-header: 0 6px 24px rgba(176, 13, 46, 0.14);
-  --shadow-footer: 0 -8px 30px rgba(176, 13, 46, 0.16);
-  --shadow-mark: drop-shadow(0 6px 14px rgba(232, 20, 63, 0.36));
-  --shadow-mark-footer: drop-shadow(0 4px 10px rgba(176, 13, 46, 0.28));
-  --ring: 0 0 0 4px rgba(232, 20, 63, 0.22);
-
-  color-scheme: light;
-}
-
-/* ---------- Yellow : butter page, brown type, amber accents ---------- */
-[data-theme="yellow"] {
-  --pink: #FF6FA5;
-  --deep-pink: #C2185B;
-  --magenta: #A61E5C;
-  --orange: #FF8A3D;
-  --amber: #FFB020;
-  --yellow: #FFD93D;
-  --lemon: #FFF9D6;
-
-  --ink: #3A2A05;
-  --ink-soft: #6B5728;
-  --line: #F2E2AE;
-  --line-soft: #FAF0CE;
-
-  --g-warm: linear-gradient(100deg, #FFC107, #FFA000 52%, #FF8A3D);
-  --g-warm-rev: linear-gradient(100deg, #FF8A3D, #FFA000 48%, #FFC107);
-  --g-warm-v: linear-gradient(150deg, #FFC107, #E08A00 56%, #FFA000);
-  --g-sunset: linear-gradient(120deg, #FFD93D, #FFF3A3 48%, #FFE9B0);
-  --g-panel: linear-gradient(150deg, #FFF3A3, #FFE9B0 50%, #FFD97A);
-  --g-text: linear-gradient(100deg, #8A6A00, #A61E5C 50%, #C24A12);
-  --g-soft: linear-gradient(180deg, #FFFCEF, #FFF7D6 50%, #FFFBE8);
-  --on-warm: #3A2400;
-
-  --bg-base: linear-gradient(165deg, #FFFDF2 0%, #FFF7D9 45%, #FFF1C2 100%);
-  --bg-glow-a: radial-gradient(60% 46% at 10% 4%, rgba(255, 193, 7, 0.28), transparent 62%);
-  --bg-glow-b: radial-gradient(55% 42% at 92% 2%, rgba(255, 138, 61, 0.26), transparent 64%);
-  --bg-glow-c: radial-gradient(70% 55% at 50% 100%, rgba(255, 111, 165, 0.22), transparent 68%);
-
-  --hero-glow-a: radial-gradient(34% 44% at 16% 28%, rgba(255, 193, 7, 0.36), transparent 70%);
-  --hero-glow-b: radial-gradient(32% 40% at 76% 20%, rgba(255, 138, 61, 0.32), transparent 70%);
-  --hero-glow-c: radial-gradient(38% 44% at 52% 66%, rgba(255, 111, 165, 0.26), transparent 72%);
-  --orb-a: radial-gradient(circle, rgba(255, 193, 7, 0.90), transparent 70%);
-  --orb-b: radial-gradient(circle, rgba(255, 138, 61, 0.85), transparent 70%);
-  --orb-c: radial-gradient(circle, rgba(255, 111, 165, 0.80), transparent 70%);
-
-  --section-alt: linear-gradient(180deg, rgba(255, 193, 7, 0.16), rgba(255, 249, 214, 0.40) 50%, rgba(255, 138, 61, 0.12));
-  --card-bg: linear-gradient(180deg, rgba(255, 255, 255, 0.90), rgba(255, 253, 240, 0.68));
-  --form-bg: linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(255, 253, 242, 0.80));
-  --about-bg: linear-gradient(150deg, rgba(255, 193, 7, 0.30), rgba(255, 243, 163, 0.50) 55%, rgba(255, 138, 61, 0.24)), #FFFBE6;
-  --badge-bg: rgba(255, 255, 255, 0.92);
-  --header-bg: rgba(255, 253, 243, 0.86);
-  --panel-bg: rgba(255, 254, 246, 0.98);
-  --glass: rgba(255, 255, 255, 0.62);
-  --glass-strong: rgba(255, 255, 255, 0.82);
-  --field-bg: #FFFBE8;
-  --field-bg-focus: #ffffff;
-  --field-invalid-bg: #FFEEF2;
-  --track: #FFF6D9;
-  --track-edge: #FFEDBF;
-  --avatar-fade: rgba(58, 42, 5, 0.75);
-  --success: #2F6B3F;
-  --focus: #C2185B;
-
-  --bgm-m1: 255, 193, 7;
-  --bgm-m2: 255, 138, 61;
-  --bgm-m3: 255, 111, 165;
-  --bgm-link: 138, 106, 0;
-  --bgm-dot: 138, 106, 0;
-  --bgm-dot-2: 255, 138, 61;
-  --bgm-strength: 0.5;
-  --bgm-scrim: rgba(255, 253, 243, 0.30);
-  --bgm-light-1: 255, 193, 7;
-  --bgm-light-2: 255, 138, 61;
-  --bgm-light-3: 255, 217, 61;
-  --bgm-light-strength: 0.85;
-
-  --glass-bg: rgba(255, 255, 255, 0.52);
-  --glass-bg-strong: rgba(255, 255, 255, 0.70);
-  --glass-border: rgba(255, 255, 255, 0.78);
-  --glass-shadow: 0 18px 46px rgba(138, 106, 0, 0.16);
-
-  --on-1: rgba(58, 42, 5, 0.82);
-  --on-2: rgba(58, 42, 5, 0.62);
-  --on-3: rgba(58, 42, 5, 0.46);
-  --on-deco: rgba(58, 42, 5, 0.40);
-  --on-line: rgba(58, 42, 5, 0.22);
-  --on-hover: #ffffff;
-
-  --mark-1: #FFC107;
-  --mark-2: #FF8A3D;
-  --mark-3: #FF6FA5;
-  --mark-ink: #3A2400;
-  --mark-badge-fill: rgba(58, 42, 5, 0.92);
-
-  --shadow-sm: 0 2px 8px rgba(138, 106, 0, 0.12);
-  --shadow-md: 0 12px 30px rgba(138, 106, 0, 0.16);
-  --shadow-lg: 0 24px 60px rgba(138, 106, 0, 0.22);
-  --shadow-btn: 0 16px 38px rgba(255, 160, 0, 0.34);
-  --shadow-header: 0 6px 24px rgba(138, 106, 0, 0.14);
-  --shadow-footer: 0 -8px 30px rgba(138, 106, 0, 0.16);
-  --shadow-mark: drop-shadow(0 6px 14px rgba(255, 160, 0, 0.36));
-  --shadow-mark-footer: drop-shadow(0 4px 10px rgba(138, 106, 0, 0.26));
-  --ring: 0 0 0 4px rgba(255, 160, 0, 0.24);
-
-  color-scheme: light;
-}
-
-/* ---------- Wine : deep wine page, cream type, neon pink/orange accents ---------- */
-[data-theme="wine"] {
-  --pink: #FF6FA5;
-  --deep-pink: #FFC2D6;
-  --magenta: #C2185B;
-  --orange: #FFA45C;
-  --amber: #FFC94D;
-  --yellow: #FFE28A;
-  --lemon: #FFF6BF;
-
   --ink: #FFF1E6;
   --ink-soft: #EFCBD5;
   --line: #6B1636;
   --line-soft: #4D0F27;
 
+  /* Gradient system. --g-warm and --g-warm-v carry --on-warm text (buttons,
+     eyebrow, nav pills), so they must stay darker than it. */
   --g-warm: linear-gradient(100deg, #C21F58, #A61E5C 52%, #7A1440);
   --g-warm-rev: linear-gradient(100deg, #7A1440, #A61E5C 48%, #C21F58);
   --g-warm-v: linear-gradient(150deg, #C21F58, #7A1440 56%, #A61E5C);
@@ -359,11 +35,13 @@
   --g-soft: linear-gradient(180deg, #2A0716, #3A0A1E 50%, #2A0716);
   --on-warm: #FFF1E6;
 
+  /* Page canvas */
   --bg-base: linear-gradient(165deg, #3A0A1E 0%, #2A0716 45%, #1E0510 100%);
   --bg-glow-a: radial-gradient(60% 46% at 10% 4%, rgba(194, 31, 88, 0.68), transparent 62%);
   --bg-glow-b: radial-gradient(55% 42% at 92% 2%, rgba(255, 176, 32, 0.20), transparent 64%);
   --bg-glow-c: radial-gradient(70% 55% at 50% 100%, rgba(255, 111, 165, 0.22), transparent 68%);
 
+  /* Hero atmosphere */
   --hero-glow-a: radial-gradient(34% 44% at 16% 28%, rgba(255, 111, 165, 0.34), transparent 70%);
   --hero-glow-b: radial-gradient(32% 40% at 76% 20%, rgba(255, 176, 32, 0.26), transparent 70%);
   --hero-glow-c: radial-gradient(38% 44% at 52% 66%, rgba(194, 31, 88, 0.60), transparent 72%);
@@ -371,6 +49,7 @@
   --orb-b: radial-gradient(circle, rgba(255, 196, 77, 0.70), transparent 70%);
   --orb-c: radial-gradient(circle, rgba(194, 31, 88, 0.80), transparent 70%);
 
+  /* Surfaces */
   --section-alt: linear-gradient(180deg, rgba(194, 31, 88, 0.30), rgba(255, 111, 165, 0.16) 50%, rgba(255, 176, 32, 0.10));
   --card-bg: linear-gradient(180deg, rgba(107, 22, 54, 0.60), rgba(58, 10, 30, 0.58));
   --form-bg: linear-gradient(180deg, rgba(107, 22, 54, 0.62), rgba(62, 10, 32, 0.60));
@@ -389,6 +68,8 @@
   --success: #9FE0B4;
   --focus: #FF6FA5;
 
+  /* Ambient background layer (read by background.js — keep these as literal
+     "r, g, b" triplets, since var() references do not resolve in JS) */
   --bgm-m1: 255, 111, 165;
   --bgm-m2: 255, 176, 32;
   --bgm-m3: 194, 31, 88;
@@ -402,11 +83,14 @@
   --bgm-light-3: 255, 241, 230;
   --bgm-light-strength: 1;
 
+  /* Glassmorphism */
   --glass-bg: rgba(255, 255, 255, 0.07);
   --glass-bg-strong: rgba(255, 255, 255, 0.10);
   --glass-border: rgba(255, 255, 255, 0.15);
   --glass-shadow: 0 18px 46px rgba(0, 0, 0, 0.50);
+  --glass-blur: 18px;
 
+  /* Text that sits on a coloured panel (band, contact card, footer) */
   --on-1: rgba(255, 241, 230, 0.88);
   --on-2: rgba(255, 241, 230, 0.68);
   --on-3: rgba(255, 241, 230, 0.52);
@@ -414,12 +98,15 @@
   --on-line: rgba(255, 241, 230, 0.22);
   --on-hover: #ffffff;
 
+  /* Logo — bright pink/orange/yellow mark; the badge in the footer is dark so
+     the same gradient can be used as its stroke. */
   --mark-1: #FF6FA5;
   --mark-2: #FFA45C;
   --mark-3: #FFE28A;
   --mark-ink: #3A0A1E;
   --mark-badge-fill: rgba(90, 20, 48, 0.94);
 
+  /* Depth */
   --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.40);
   --shadow-md: 0 12px 30px rgba(0, 0, 0, 0.46);
   --shadow-lg: 0 24px 60px rgba(0, 0, 0, 0.55);
@@ -430,8 +117,18 @@
   --shadow-mark-footer: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.50));
   --ring: 0 0 0 4px rgba(255, 111, 165, 0.30);
 
+  --radius: 18px;
+  --radius-lg: 28px;
+  --wrap: 1140px;
+
+  --font-display: "Space Grotesk", "Segoe UI", system-ui, sans-serif;
+  --font-serif: "Playfair Display", Georgia, "Times New Roman", serif;
+  --font-script: "Great Vibes", "Segoe Script", "Brush Script MT", cursive;
+  --font-body: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+
   color-scheme: dark;
 }
+
 /* ---------- Reset ---------- */
 *, *::before, *::after { box-sizing: border-box; }
 
@@ -1679,84 +1376,6 @@ ul { margin: 0; padding: 0; list-style: none; }
 .footer-nav a:hover { color: var(--on-hover); }
 .footer-copy { margin: 0; font-size: 0.85rem; color: var(--on-1); }
 
-/* ---------- Theme dock ---------- */
-.theme-dock {
-  position: fixed;
-  right: 0.9rem;
-  bottom: 0.9rem;
-  z-index: 200;
-  display: flex;
-  align-items: center;
-  gap: 0.22rem;
-  padding: 0.3rem 0.36rem;
-  border-radius: 999px;
-  background: var(--panel-bg);
-  border: 1px solid var(--line);
-  box-shadow: var(--shadow-md);
-  backdrop-filter: blur(12px);
-}
-
-.theme-dock-label {
-  padding-left: 0.28rem;
-  font-family: var(--font-display);
-  font-size: 0.56rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-}
-
-.theme-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.32rem;
-  padding: 0.34rem 0.52rem;
-  border: 1px solid transparent;
-  border-radius: 999px;
-  background: transparent;
-  color: var(--ink);
-  font-family: var(--font-body);
-  font-size: 0.76rem;
-  font-weight: 600;
-  line-height: 1;
-  cursor: pointer;
-  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
-}
-.theme-chip:hover { background: var(--glass); transform: translateY(-1px); }
-.theme-chip:active { transform: translateY(0); }
-.theme-chip:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
-
-.theme-chip[aria-pressed="true"] {
-  background: var(--g-warm);
-  background-size: 220% 100%;
-  color: var(--on-warm);
-  border-color: var(--on-warm);
-  box-shadow: var(--shadow-sm);
-  animation: gradient-pan 7s ease-in-out infinite alternate;
-}
-
-.theme-chip-dot {
-  flex: none;
-  width: 13px;
-  height: 13px;
-  border-radius: 50%;
-  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.16);
-}
-
-/* Swatch dots always preview their own palette, whichever theme is active */
-.theme-chip[data-theme-value="blush"] .theme-chip-dot {
-  background: linear-gradient(135deg, #FF4D8D, #FF8A3D 55%, #FFD93D);
-}
-.theme-chip[data-theme-value="reddish"] .theme-chip-dot {
-  background: linear-gradient(135deg, #FF4D4D, #C2185B 50%, #FFA53D);
-}
-.theme-chip[data-theme-value="yellow"] .theme-chip-dot {
-  background: linear-gradient(135deg, #FFC107, #FF8A3D 50%, #FF6FA5);
-}
-.theme-chip[data-theme-value="wine"] .theme-chip-dot {
-  background: linear-gradient(135deg, #FF6FA5, #A61E5C 50%, #FFC94D);
-}
-
 /* ---------- Keyframes ---------- */
 @keyframes gradient-pan {
   from { background-position: 0% 50%; }
@@ -1907,21 +1526,6 @@ html.gsap-ready .reveal { opacity: 1; translate: none; transition: none; }
   .hero-actions .btn { width: 100%; }
 
   .signature { gap: 0.5rem; }
-
-  /* Theme dock collapses to swatches only */
-  .theme-dock {
-    right: 0.6rem;
-    bottom: calc(0.6rem + env(safe-area-inset-bottom));
-    gap: 0.12rem;
-    padding: 0.26rem 0.3rem;
-  }
-  .theme-dock-label,
-  .theme-chip-name { display: none; }
-  .theme-chip { padding: 0.44rem; }
-  .theme-chip-dot { width: 17px; height: 17px; }
-
-  /* keep the floating dock clear of the footer */
-  .site-footer { padding-bottom: 5rem; }
 }
 
 /* ---------- Touch devices ---------- */
@@ -1934,7 +1538,6 @@ html.gsap-ready .reveal { opacity: 1; translate: none; transition: none; }
   .card:hover .card-icon { transform: none; }
   .card-glare { display: none; }
   .primary-nav a:hover { background: transparent; }
-  .theme-chip:hover { background: transparent; transform: none; }
 }
 
 /* ---------- Motion preferences ---------- */
@@ -1950,7 +1553,7 @@ html.gsap-ready .reveal { opacity: 1; translate: none; transition: none; }
 
 /* ---------- Print ---------- */
 @media print {
-  .site-header, .band, .hero-glow, .hero-orbs, .nav-toggle, .theme-dock,
+  .site-header, .band, .hero-glow, .hero-orbs, .nav-toggle,
   .section-blob, .hero-stage, .scroll-cue, .card-glare,
   .bg-mesh, .bg-scrim { display: none; }
   body { background: #fff; color: #000; }
