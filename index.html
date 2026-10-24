@@ -3,14 +3,39 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>Sohail &amp; Shiraz — Digital Marketing Studio</title>
-  <meta name="description" content="Sohail &amp; Shiraz is a digital marketing studio helping ambitious brands grow through SEO, paid advertising, social media and conversion-focused design." />
+  <meta name="description" content="Digital marketing studio for ambitious brands: SEO, paid ads, social, brand strategy, email and CRO. Two partners, no hand-offs." />
+  <meta name="author" content="Sohail &amp; Shiraz" />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+  <meta name="theme-color" content="#e8a0b6" />
+  <link rel="canonical" href="https://sohailandshiraz.com/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Sohail &amp; Shiraz" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:url" content="https://sohailandshiraz.com/" />
+  <meta property="og:title" content="Sohail &amp; Shiraz — Digital Marketing Studio" />
+  <meta property="og:description" content="We grow brands that refuse to blend in. A two-partner digital marketing studio building campaigns that move real numbers — more qualified traffic, more conversions, less wasted spend." />
+  <meta property="og:image" content="https://sohailandshiraz.com/og-image.jpg" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Sohail &amp; Shiraz — Digital Marketing Studio" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Sohail &amp; Shiraz — Digital Marketing Studio" />
+  <meta name="twitter:description" content="We grow brands that refuse to blend in. A two-partner digital marketing studio building campaigns that move real numbers." />
+  <meta name="twitter:image" content="https://sohailandshiraz.com/og-image.jpg" />
+  <meta name="twitter:image:alt" content="Sohail &amp; Shiraz — Digital Marketing Studio" />
+
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&amp;family=Inter:wght@400;500;600;700&amp;family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&amp;family=Space+Grotesk:wght@500;700&amp;display=swap" rel="stylesheet" />
+  <link rel="apple-touch-icon" href="logo-512.png" />
+
+  <!-- Theme bootstrap: runs before first paint so the page never flashes the wrong palette. -->
   <script>
-    /* Apply the saved theme before first paint so there is no colour flash. */
     (function () {
       var themes = ["blush", "reddish", "yellow", "wine"];
       var theme = "blush";
@@ -24,21 +49,302 @@
       document.documentElement.classList.add("js");
     })();
   </script>
+
+  <!-- Preconnect & DNS Prefetch (placed early for fastest resolution) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&amp;family=Inter:wght@400;500;600;700&amp;family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&amp;family=Space+Grotesk:wght@500;700&amp;display=swap" rel="stylesheet" />
+
+  <!-- Preload main stylesheet -->
+  <link rel="preload" href="styles.css" as="style" />
   <link rel="stylesheet" href="styles.css" />
   <noscript>
     <style>
       .reveal { opacity: 1; translate: none; }
     </style>
   </noscript>
+
+  <!-- ==========================================================================
+       Structured data — one @graph so every node can reference the others by @id.
+       Read by Google, Bing and LLM crawlers.
+
+       REPLACE before launch: every https://sohailandshiraz.com/ below, the
+       contact details, the address, the social profiles and the opening hours.
+       The FAQPage questions must stay identical to the visible FAQ section in
+       the body — Google drops markup that is not on the page.
+       ========================================================================== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "ProfessionalService",
+        "@id": "https://sohailandshiraz.com/#business",
+        "name": "Sohail & Shiraz Digital Marketing Studio",
+        "alternateName": "Sohail & Shiraz",
+        "url": "https://sohailandshiraz.com/",
+        "slogan": "We grow brands that refuse to blend in.",
+        "description": "A two-partner digital marketing studio founded in 2019, working on SEO, paid advertising, social media, brand strategy, email automation and analytics for ambitious brands.",
+        "foundingDate": "2019",
+        "logo": { "@id": "https://sohailandshiraz.com/#logo" },
+        "image": { "@id": "https://sohailandshiraz.com/#primaryimage" },
+        "founder": [
+          { "@id": "https://sohailandshiraz.com/#person-sohail" },
+          { "@id": "https://sohailandshiraz.com/#person-shiraz" }
+        ],
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "123 Placeholder Street, Suite 400",
+          "addressLocality": "Your City",
+          "addressCountry": "US"
+        },
+        "contactPoint": [
+          {
+            "@type": "ContactPoint",
+            "contactType": "sales",
+            "email": "hello@example.com",
+            "telephone": "+1-555-010-0199",
+            "availableLanguage": ["English"],
+            "areaServed": "Worldwide"
+          }
+        ],
+        "openingHoursSpecification": {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          "opens": "09:00",
+          "closes": "18:00"
+        },
+        "priceRange": "$$",
+        "currenciesAccepted": "USD",
+        "areaServed": "Worldwide",
+        "sameAs": [
+          "https://www.linkedin.com/company/sohailandshiraz/",
+          "https://twitter.com/sohailandshiraz",
+          "https://www.instagram.com/sohailandshiraz/",
+          "https://www.facebook.com/sohailandshiraz/"
+        ],
+        "knowsAbout": [
+          "Search engine optimization",
+          "Content marketing",
+          "Google Ads",
+          "Meta advertising",
+          "LinkedIn advertising",
+          "Social media marketing",
+          "Brand strategy",
+          "Email marketing",
+          "Marketing automation",
+          "Web analytics",
+          "Conversion rate optimization"
+        ],
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Digital marketing services",
+          "itemListElement": [
+            { "@type": "Offer", "itemOffered": { "@id": "https://sohailandshiraz.com/#service-seo" } },
+            { "@type": "Offer", "itemOffered": { "@id": "https://sohailandshiraz.com/#service-paid-ads" } },
+            { "@type": "Offer", "itemOffered": { "@id": "https://sohailandshiraz.com/#service-social" } },
+            { "@type": "Offer", "itemOffered": { "@id": "https://sohailandshiraz.com/#service-brand" } },
+            { "@type": "Offer", "itemOffered": { "@id": "https://sohailandshiraz.com/#service-email" } },
+            { "@type": "Offer", "itemOffered": { "@id": "https://sohailandshiraz.com/#service-analytics" } }
+          ]
+        }
+      },
+      {
+        "@type": "ImageObject",
+        "@id": "https://sohailandshiraz.com/#logo",
+        "url": "https://sohailandshiraz.com/logo-512.png",
+        "contentUrl": "https://sohailandshiraz.com/logo-512.png",
+        "width": 512,
+        "height": 512,
+        "caption": "Sohail & Shiraz"
+      },
+      {
+        "@type": "ImageObject",
+        "@id": "https://sohailandshiraz.com/#primaryimage",
+        "url": "https://sohailandshiraz.com/og-image.jpg",
+        "contentUrl": "https://sohailandshiraz.com/og-image.jpg",
+        "width": 1200,
+        "height": 630,
+        "caption": "Sohail & Shiraz — Digital Marketing Studio"
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://sohailandshiraz.com/#website",
+        "url": "https://sohailandshiraz.com/",
+        "name": "Sohail & Shiraz",
+        "description": "A two-partner digital marketing studio helping ambitious brands grow through SEO, paid advertising, social media and conversion-focused design.",
+        "publisher": { "@id": "https://sohailandshiraz.com/#business" },
+        "inLanguage": "en"
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://sohailandshiraz.com/#webpage",
+        "url": "https://sohailandshiraz.com/",
+        "name": "Sohail & Shiraz — Digital Marketing Studio",
+        "description": "Digital marketing studio for ambitious brands: SEO, paid ads, social, brand strategy, email and CRO. Two partners, no hand-offs.",
+        "isPartOf": { "@id": "https://sohailandshiraz.com/#website" },
+        "about": { "@id": "https://sohailandshiraz.com/#business" },
+        "primaryImageOfPage": { "@id": "https://sohailandshiraz.com/#primaryimage" },
+        "inLanguage": "en"
+      },
+      {
+        "@type": "Person",
+        "@id": "https://sohailandshiraz.com/#person-sohail",
+        "name": "Sohail",
+        "jobTitle": "Co-Founder",
+        "image": "https://sohailandshiraz.com/sohail.jpg",
+        "worksFor": { "@id": "https://sohailandshiraz.com/#business" },
+        "url": "https://sohailandshiraz.com/#about",
+        "knowsAbout": ["Search engine optimization", "Paid advertising", "Marketing analytics"]
+      },
+      {
+        "@type": "Person",
+        "@id": "https://sohailandshiraz.com/#person-shiraz",
+        "name": "Shiraz",
+        "jobTitle": "Co-Founder",
+        "image": "https://sohailandshiraz.com/shiraz.jpg",
+        "worksFor": { "@id": "https://sohailandshiraz.com/#business" },
+        "url": "https://sohailandshiraz.com/#about",
+        "knowsAbout": ["Brand strategy", "Social media marketing", "Conversion rate optimization"]
+      },
+      {
+        "@type": "Service",
+        "@id": "https://sohailandshiraz.com/#service-seo",
+        "name": "SEO & Content",
+        "description": "Technical fixes, keyword strategy and content that earns rankings instead of buying them.",
+        "serviceType": "Search Engine Optimization",
+        "provider": { "@id": "https://sohailandshiraz.com/#business" },
+        "areaServed": "Worldwide"
+      },
+      {
+        "@type": "Service",
+        "@id": "https://sohailandshiraz.com/#service-paid-ads",
+        "name": "Paid Advertising",
+        "description": "Google, Meta and LinkedIn campaigns built around creative testing and tight cost controls.",
+        "serviceType": "Pay-Per-Click Advertising",
+        "provider": { "@id": "https://sohailandshiraz.com/#business" },
+        "areaServed": "Worldwide"
+      },
+      {
+        "@type": "Service",
+        "@id": "https://sohailandshiraz.com/#service-social",
+        "name": "Social Media",
+        "description": "Always-on content calendars and community management that keep your brand in the feed.",
+        "serviceType": "Social Media Marketing",
+        "provider": { "@id": "https://sohailandshiraz.com/#business" },
+        "areaServed": "Worldwide"
+      },
+      {
+        "@type": "Service",
+        "@id": "https://sohailandshiraz.com/#service-brand",
+        "name": "Brand Strategy",
+        "description": "Positioning, messaging and visual direction so every touchpoint says the same thing.",
+        "serviceType": "Brand Strategy",
+        "provider": { "@id": "https://sohailandshiraz.com/#business" },
+        "areaServed": "Worldwide"
+      },
+      {
+        "@type": "Service",
+        "@id": "https://sohailandshiraz.com/#service-email",
+        "name": "Email & Automation",
+        "description": "Lifecycle flows and newsletters that turn one-time buyers into repeat customers.",
+        "serviceType": "Email Marketing",
+        "provider": { "@id": "https://sohailandshiraz.com/#business" },
+        "areaServed": "Worldwide"
+      },
+      {
+        "@type": "Service",
+        "@id": "https://sohailandshiraz.com/#service-analytics",
+        "name": "Analytics & CRO",
+        "description": "Clean tracking, honest dashboards and landing page tests that lift conversion rate.",
+        "serviceType": "Conversion Rate Optimization",
+        "provider": { "@id": "https://sohailandshiraz.com/#business" },
+        "areaServed": "Worldwide"
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://sohailandshiraz.com/#faq",
+        "isPartOf": { "@id": "https://sohailandshiraz.com/#webpage" },
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What services does Sohail & Shiraz offer?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Six core services: SEO & Content, Paid Advertising across Google, Meta and LinkedIn, Social Media management, Brand Strategy, Email & Automation, and Analytics & CRO."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What results has the studio achieved?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "240+ campaigns launched, an average return on ad spend of 4.8x and a 98% client retention rate. The studio takes on a small number of clients at a time so every campaign gets real attention."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do you require long-term contracts?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. There are no lock-in contracts. If the studio does not believe it can move your numbers, it says so before you spend anything."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Who are the founders of Sohail & Shiraz?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sohail & Shiraz was founded in 2019 by two partners, Sohail and Shiraz. They work directly with every client, with no account managers or hand-offs."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I get started with Sohail & Shiraz?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Fill in the contact form or email hello@example.com with a little about your business. You will get a reply within two working days with an honest read and a free first-look audit."
+            }
+          }
+        ]
+      },
+      {
+        "@type": "ContactPage",
+        "@id": "https://sohailandshiraz.com/#contactpage",
+        "url": "https://sohailandshiraz.com/#contact",
+        "name": "Contact Sohail & Shiraz",
+        "description": "Get in touch with Sohail & Shiraz for a free first-look audit of your digital marketing funnel.",
+        "isPartOf": { "@id": "https://sohailandshiraz.com/#webpage" },
+        "mainEntity": {
+          "@type": "ContactPoint",
+          "contactType": "sales",
+          "email": "hello@example.com",
+          "telephone": "+1-555-010-0199",
+          "availableLanguage": ["English"],
+          "hoursAvailable": {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+            "opens": "09:00",
+            "closes": "18:00"
+          }
+        }
+      }
+    ]
+  }
+  </script>
 </head>
+
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
 
   <!-- Ambient background layer (canvas + readability scrim), then the page -->
-  <canvas id="bgMesh" class="bg-mesh" aria-hidden="true"></canvas>
-  <div class="bg-scrim" aria-hidden="true"></div>
+  <canvas id="bgMesh" class="bg-mesh" aria-hidden="true" data-nosnippet></canvas>
+  <div class="bg-scrim" aria-hidden="true" data-nosnippet></div>
 
-  <header class="site-header" id="siteHeader">
+  <header class="site-header" id="siteHeader" role="banner">
     <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
     <div class="wrap header-inner">
       <a class="logo" href="#top" aria-label="Sohail and Shiraz, home">
@@ -78,6 +384,7 @@
           <li><a href="#services">Services</a></li>
           <li><a href="#about">About</a></li>
           <li><a href="#contact">Contact</a></li>
+          <li><a href="#faq">FAQ</a></li>
         </ul>
         <a class="btn btn-sm btn-primary nav-cta" href="#contact">Get a free audit</a>
       </nav>
@@ -86,9 +393,9 @@
 
   <main id="main">
     <!-- Hero -->
-    <section class="hero" id="top">
-      <div class="hero-glow" aria-hidden="true"></div>
-      <div class="hero-orbs" aria-hidden="true">
+    <section class="hero" id="top" itemscope itemtype="https://schema.org/WPHeader">
+      <div class="hero-glow" aria-hidden="true" data-nosnippet></div>
+      <div class="hero-orbs" aria-hidden="true" data-nosnippet>
         <span class="orb orb-1"></span>
         <span class="orb orb-2"></span>
         <span class="orb orb-3"></span>
@@ -130,7 +437,7 @@
         </div>
 
         <!-- Decorative glass composition -->
-        <div class="hero-stage" aria-hidden="true">
+        <div class="hero-stage" aria-hidden="true" data-nosnippet>
           <span class="stage-glow"></span>
           <div class="glass-card hero-panel" data-parallax="0.08">
             <div class="panel-head">
@@ -167,7 +474,7 @@
     </section>
 
     <!-- Scrolling band -->
-    <div class="band" aria-hidden="true">
+    <div class="band" aria-hidden="true" data-nosnippet>
       <div class="band-track">
         <span>SEO</span><span class="dot">&bull;</span>
         <span>Paid Social</span><span class="dot">&bull;</span>
@@ -189,7 +496,7 @@
     </div>
 
     <!-- Services -->
-    <section class="section" id="services">
+    <section class="section" id="services" itemscope itemtype="https://schema.org/ItemList">
       <span class="section-blob blob-1" aria-hidden="true" data-parallax="0.22"></span>
       <span class="section-blob blob-2" aria-hidden="true" data-parallax="0.36"></span>
       <div class="wrap">
@@ -261,13 +568,13 @@
         <div class="about-visual reveal">
           <figure class="avatar avatar-photo avatar-a" id="photoSohail">
             <span class="avatar-fallback" aria-hidden="true">S</span>
-            <img src="sohail.jpg" alt="" />
+            <img src="sohail.jpg" alt="Sohail, Co-Founder of Sohail and Shiraz Digital Marketing Studio" width="492" height="640" loading="lazy" decoding="async" />
             <figcaption class="avatar-name">Sohail</figcaption>
           </figure>
 
           <figure class="avatar avatar-photo avatar-b" id="photoShiraz">
             <span class="avatar-fallback" aria-hidden="true">S</span>
-            <img src="shiraz.jpg" alt="" />
+            <img src="shiraz.jpg" alt="Shiraz, Co-Founder of Sohail and Shiraz Digital Marketing Studio" width="428" height="640" loading="lazy" decoding="async" />
             <figcaption class="avatar-name">Shiraz</figcaption>
           </figure>
 
@@ -380,9 +687,72 @@
         </div>
       </div>
     </section>
+
+    <!-- FAQ — the visible text here mirrors the FAQPage markup in <head>.
+         Google only credits FAQ structured data for questions that appear on
+         the page, so keep the two in sync if either changes. -->
+    <section class="section section-alt" id="faq">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <p class="eyebrow">FAQ</p>
+          <h2 data-wipe>The questions we get <span class="gradient-text">before every kickoff.</span></h2>
+          <p class="section-sub">
+            Straight answers on services, contracts and what working with a
+            two-person studio actually looks like.
+          </p>
+        </div>
+
+        <div class="faq-list">
+          <details class="faq-item reveal">
+            <summary>What services does Sohail &amp; Shiraz offer?</summary>
+            <div class="faq-answer">
+              <p>Six core services: SEO &amp; Content, Paid Advertising across Google,
+              Meta and LinkedIn, Social Media management, Brand Strategy, Email &amp;
+              Automation, and Analytics &amp; CRO.</p>
+            </div>
+          </details>
+
+          <details class="faq-item reveal">
+            <summary>What results has the studio achieved?</summary>
+            <div class="faq-answer">
+              <p>240+ campaigns launched, an average return on ad spend of 4.8&times;
+              and a 98% client retention rate. The studio takes on a small number of
+              clients at a time so every campaign gets real attention.</p>
+            </div>
+          </details>
+
+          <details class="faq-item reveal">
+            <summary>Do you require long-term contracts?</summary>
+            <div class="faq-answer">
+              <p>No. There are no lock-in contracts. If the studio does not believe it
+              can move your numbers, it says so before you spend anything.</p>
+            </div>
+          </details>
+
+          <details class="faq-item reveal">
+            <summary>Who are the founders of Sohail &amp; Shiraz?</summary>
+            <div class="faq-answer">
+              <p>Sohail &amp; Shiraz was founded in 2019 by two partners, Sohail and
+              Shiraz. They work directly with every client, with no account managers
+              or hand-offs.</p>
+            </div>
+          </details>
+
+          <details class="faq-item reveal">
+            <summary>How do I get started with Sohail &amp; Shiraz?</summary>
+            <div class="faq-answer">
+              <p>Fill in the <a href="#contact">contact form</a> or email
+              <a href="mailto:hello@example.com">hello@example.com</a> with a little
+              about your business. You will get a reply within two working days with
+              an honest read and a free first-look audit.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
   </main>
 
-  <footer class="site-footer">
+  <footer class="site-footer" role="contentinfo">
     <div class="wrap footer-inner">
       <div class="footer-brand">
         <span class="logo-mark" aria-hidden="true">
@@ -407,12 +777,13 @@
         <a href="#services">Services</a>
         <a href="#about">About</a>
         <a href="#contact">Contact</a>
+        <a href="#faq">FAQ</a>
       </nav>
       <p class="footer-copy">&copy; <span id="year">2026</span> Sohail <span class="amp">&amp;</span> Shiraz. All rights reserved.</p>
     </div>
   </footer>
 
-  <div class="theme-dock" id="themeDock" role="group" aria-label="Colour theme">
+  <div class="theme-dock" id="themeDock" role="group" aria-label="Colour theme" data-nosnippet>
     <span class="theme-dock-label" aria-hidden="true">Theme</span>
 
     <button class="theme-chip" type="button" data-theme-value="blush" aria-pressed="true">

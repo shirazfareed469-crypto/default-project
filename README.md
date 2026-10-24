@@ -35,14 +35,19 @@ python -m http.server 8000
 
 ```
 Default Project/
-├── index.html            Markup for the whole page, plus the theme bootstrap
+├── index.html            Markup, head metadata and all JSON-LD structured data
 ├── styles.css            All styling: tokens, themes, layout, components
 ├── script.js             Navigation, reveals, counters, form, theme switching
 ├── background.js         Animated canvas layer behind the page
 ├── favicon.svg           Browser tab icon (self-contained)
 ├── logo.svg              Standalone logo mark (self-contained)
-├── sohail.jpg            Founder portrait
-├── shiraz.jpg            Founder portrait
+├── logo-512.png          Raster logo for schema.org + apple-touch-icon
+├── og-image.jpg          1200×630 social preview card
+├── sohail.jpg            Founder portrait (492×640)
+├── shiraz.jpg            Founder portrait (428×640)
+├── robots.txt            Crawl rules, including explicit AI-crawler allowances
+├── sitemap.xml           Single-URL sitemap
+├── llms.txt              Plain-text brief aimed at LLM crawlers
 ├── background-mesh.html  Standalone demo of the canvas effect (superseded)
 ├── assests/
 │   └── Screenshot 2026-10-17 113901.png   Palette reference (not used by the build)
@@ -62,6 +67,7 @@ is not linked from the site. It can be deleted without affecting anything.
 | Services  | `#services` | Six service cards in a responsive grid |
 | About     | `#about`    | Founders' portraits, studio story, three principles, signature, CTA |
 | Contact   | `#contact`  | Contact details panel and a validated enquiry form |
+| FAQ       | `#faq`      | Five expandable questions, mirrored in `FAQPage` structured data |
 | Footer    | —           | Logo, footer navigation, copyright |
 
 The header is fixed and includes a reading-progress bar, a mobile menu toggle and
@@ -231,6 +237,90 @@ bottom padding on small screens so the dock never covers it.
 
 ---
 
+## SEO, structured data and AI discoverability
+
+All of it lives in the `<head>` of `index.html`. No plugin, no build step.
+
+### What is declared
+
+A single `<script type="application/ld+json">` holds one `@graph` of 15 nodes,
+cross-linked by `@id`:
+
+| Node | Purpose |
+|---|---|
+| `ProfessionalService` (`#business`) | The studio: address, phone, hours, price range, founders, services, expertise |
+| `WebSite` (`#website`) | Site identity and language |
+| `WebPage` (`#webpage`) | This page, its canonical URL and primary image |
+| `Person` ×2 | Sohail and Shiraz, each linked back to the business |
+| `Service` ×6 | One per service card, each linking to the business as provider |
+| `ImageObject` ×2 | Logo (512×512) and social card (1200×630) |
+| `FAQPage` (`#faq`) | The five visible FAQ answers |
+| `ContactPage` (`#contactpage`) | Contact details |
+
+### The rules that matter more than the markup
+
+- **Nothing in the schema may be invisible on the page.** Google ignores
+  structured data describing content a visitor cannot see. The `FAQPage`
+  questions are the visible `<summary>` text in `#faq` — edit one, edit both.
+- **No self-serving reviews.** There is deliberately *no* `aggregateRating` on
+  the business. Rating markup an organisation publishes about itself is against
+  Google's policy and can trigger a manual action instead of a rich result.
+- **No invented location data.** `areaServed` is `Worldwide`; the previous markup
+  claimed a `GeoCircle` centred on latitude/longitude `0,0`.
+- **Raster logo.** Google does not use SVG for the `logo` property, so
+  `logo-512.png` exists purely for schema and `apple-touch-icon`.
+- **One canonical host.** `rel=canonical`, `og:url`, every `@id`, `sitemap.xml`
+  and `robots.txt` all point at `https://sohailandshiraz.com/`. Change them
+  together or the canonical signal will contradict the sitemap.
+
+### AI readability
+
+- `llms.txt` is a plain-text brief: who the studio is, its six services, its track
+  record, contact details, and a note that the contact info is still placeholder.
+- `robots.txt` explicitly allows `GPTBot`, `OAI-SearchBot`, `ChatGPT-User`,
+  `ClaudeBot`, `Claude-SearchBot`, `Claude-User`, `PerplexityBot`,
+  `Google-Extended`, `Applebot-Extended` and `CCBot`.
+- `knowsAbout` on the business and on each founder tells retrieval systems what
+  the studio covers without them having to infer it from prose.
+- Real landmarks (`header`, `main`, `section[id]`, `footer`), one `<h1>` and an
+  unbroken `h2`/`h3` outline mean extraction does not depend on class names.
+
+### Honest caveat about FAQ rich results
+
+Since 2023 Google shows FAQ rich results only for authoritative government and
+health sites. This markup is unlikely to produce a rich snippet. It is here to
+make the Q&A machine-readable for AI crawlers and other engines — not to decorate
+the results page.
+
+---
+
+## Performance
+
+| Change | Effect |
+|---|---|
+| Portraits resized to their 2× display size, re-encoded at quality 82 | **744 KB → 65 KB** — by far the largest win on the page |
+| `og-image.jpg` created | Fixes a social card that previously 404'd. Zero runtime cost: browsers never download it |
+| Portraits keep `loading="lazy"`, `decoding="async"` and explicit `width`/`height` | Below-fold bytes deferred, no layout shift |
+| JSON-LD consolidated from 9 blocks into 1 | ~10 KB smaller head, one parse |
+| Duplicate `robots` meta and unused `keywords` meta removed | No measurable win; less head noise |
+
+Deliberately **not** done, and why:
+
+- **`content-visibility: auto` on sections.** It lets off-screen sections skip
+  layout, which changes document height as ScrollTrigger measures it. The
+  parallax and wipe animations would visibly jump. Rejected on purpose.
+- **Self-hosting or subsetting the four Google Fonts families.** This is the
+  biggest remaining lever — roughly 3–4 third-party requests and ~120 KB of woff2
+  on a cold cache. Not done because it needs the font files vendored and changes
+  the delivery model. The `<link>` already uses `display=swap` and there are two
+  `preconnect`s. Easy to do on request.
+- **Removing GSAP or Motion.** Kept by requirement; `script.js` already
+  feature-detects both and degrades to the CSS layer.
+- **More `will-change`.** The transform layers already declare it; adding more
+  costs GPU memory on mobile for no gain.
+
+---
+
 ## Before you launch — placeholders to replace
 
 The site ships with clearly-marked demo content. Search for these and swap them:
@@ -240,9 +330,13 @@ The site ships with clearly-marked demo content. Search for these and swap them:
 | Email | `hello@example.com` | `index.html` (contact panel) |
 | Phone | `+1 (555) 010-0199` | `index.html` (contact panel, `tel:` link) |
 | Address | `123 Placeholder Street, Suite 400` | `index.html` (contact panel) |
+| Canonical domain | `https://sohailandshiraz.com/` | `<head>`, every `@id`, `sitemap.xml`, `robots.txt`, `llms.txt` |
 | Success/error copy | — | `script.js` (contact form handler) |
 | Statistics | `240+`, `4.8×`, `98%` | `index.html` (`data-to` values) |
 | Founders' portraits | `sohail.jpg`, `shiraz.jpg` | replace the files, keep the names |
+| FAQ answers | 5 questions | `#faq` in `index.html` **and** the `FAQPage` node — keep in sync |
+| Social profiles | placeholder LinkedIn / X / Instagram / Facebook | `sameAs` in the JSON-LD |
+| Social preview | `og-image.jpg` | regenerate at 1200×630 if the branding changes |
 | Page title / description | — | `<head>` of `index.html` |
 
 ---

@@ -1808,7 +1808,9 @@ html.gsap-ready .reveal { opacity: 1; translate: none; transition: none; }
   .section { padding: clamp(5rem, 6vw, 7.5rem) 0; }
 }
 
-/* Tablet */
+/* Tablet and below — grids collapse and the primary nav becomes the toggle menu.
+   Five nav links plus the CTA need roughly 860px to sit on one line, so the
+   toggle starts here rather than at the old 780px. */
 @media (max-width: 900px) {
   .about-grid,
   .contact-grid { grid-template-columns: 1fr; }
@@ -1820,10 +1822,7 @@ html.gsap-ready .reveal { opacity: 1; translate: none; transition: none; }
   .hero-copy { max-width: none; }
   .hero-stage,
   .scroll-cue { display: none; }
-}
 
-/* Mobile navigation and below */
-@media (max-width: 780px) {
   html { scroll-padding-top: 88px; }
 
   /* a fixed background repaints on every scroll on iOS — let it scroll */
@@ -1955,4 +1954,82 @@ html.gsap-ready .reveal { opacity: 1; translate: none; transition: none; }
   .section-blob, .hero-stage, .scroll-cue, .card-glare,
   .bg-mesh, .bg-scrim { display: none; }
   body { background: #fff; color: #000; }
+}
+
+/* ---------- FAQ ---------- */
+.faq-list {
+  display: grid;
+  gap: 0.75rem;
+  max-width: 62rem;
+  margin-inline: auto;
+}
+
+/* Native <details> keeps this accessible and JS-free: keyboard operable,
+   crawlable when closed, and no layout shift on open. */
+.faq-item {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--card-bg);
+  box-shadow: var(--shadow-sm);
+}
+
+.faq-item summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  padding: 1.1rem 1.35rem;
+  font-family: var(--font-display);
+  font-size: 1.02rem;
+  font-weight: 700;
+  line-height: 1.45;
+  color: var(--ink);
+  cursor: pointer;
+  list-style: none;
+}
+
+/* Hide the default marker in both engines */
+.faq-item summary::-webkit-details-marker { display: none; }
+
+/* Chevron drawn in CSS so it inherits the theme accent */
+.faq-item summary::after {
+  content: "";
+  flex: none;
+  width: 0.55rem;
+  height: 0.55rem;
+  margin-top: -0.25rem;
+  border-right: 2px solid var(--pink);
+  border-bottom: 2px solid var(--pink);
+  transform: rotate(45deg);
+  transition: transform 0.3s ease, margin-top 0.3s ease;
+}
+
+.faq-item[open] summary::after {
+  margin-top: 0.3rem;
+  transform: rotate(225deg);
+}
+
+.faq-item summary:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: -3px;
+}
+
+.faq-answer {
+  padding: 0 1.35rem 1.3rem;
+  max-width: 68ch;
+}
+
+.faq-answer p {
+  margin: 0;
+  color: var(--ink-soft);
+  line-height: 1.7;
+}
+
+.faq-answer a {
+  color: var(--deep-pink);
+  text-underline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .faq-item summary::after { transition: none; }
 }

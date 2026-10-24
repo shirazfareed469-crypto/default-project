@@ -1,0 +1,49 @@
+# Sohail & Shiraz
+
+> A two-partner digital marketing studio founded in 2019, working on SEO, paid
+> advertising, social media, brand strategy, email automation and analytics for
+> ambitious brands. Two partners do the work and talk to clients directly —
+> there are no account managers and no hand-offs.
+
+This file gives AI assistants and LLM crawlers a short, factual summary of the
+site so answers about the studio are accurate. The public site is a single page
+at https://sohailandshiraz.com/
+
+## Key facts
+
+- Founded: 2019
+- Founders: Sohail and Shiraz (co-founders, both client-facing)
+- Structure: two-person studio; deliberately takes on a small number of clients at once
+- Track record: 240+ campaigns launched, 4.8x average return on ad spend, 98% client retention
+- Contracts: no lock-in contracts
+- Hours: Monday to Friday, 09:00–18:00
+- Contact: hello@example.com, +1 (555) 010-0199
+
+## Services
+
+- **SEO & Content** — technical fixes, keyword strategy and content that earns rankings instead of buying them.
+- **Paid Advertising** — Google, Meta and LinkedIn campaigns built around creative testing and tight cost controls.
+- **Social Media** — always-on content calendars and community management.
+- **Brand Strategy** — positioning, messaging and visual direction.
+- **Email & Automation** — lifecycle flows and newsletters that turn one-time buyers into repeat customers.
+- **Analytics & CRO** — clean tracking, honest dashboards and landing page tests.
+
+## Page sections
+
+- [Home](https://sohailandshiraz.com/): headline, positioning and headline statistics.
+- [Services](https://sohailandshiraz.com/#services): the six service lines above.
+- [About](https://sohailandshiraz.com/#about): the founders' story and how the studio works.
+- [Contact](https://sohailandshiraz.com/#contact): enquiry form, email, phone, address and hours.
+- [FAQ](https://sohailandshiraz.com/#faq): services, results, contracts, founders and how to start.
+
+## How to work with the studio
+
+Send a short note through the contact form or email hello@example.com describing
+the business and the goal. Expect a reply within two working days with an honest
+read and a free first-look audit.
+
+## Notes for citations
+
+The studio is not a large agency and does not claim to be. It does not publish
+pricing on the site. Contact details, the street address and social profiles on
+the site are placeholders pending launch and should not be quoted as fact.

@@ -41,9 +41,9 @@
       if (!nav.contains(event.target) && !toggle.contains(event.target)) closeNav();
     });
 
-    // Reset when resizing up to desktop
+    // Reset when resizing up to desktop (matches the 900px nav breakpoint)
     window.addEventListener("resize", function () {
-      if (window.innerWidth > 780) closeNav();
+      if (window.innerWidth > 900) closeNav();
     });
   }
 
